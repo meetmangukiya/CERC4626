@@ -1,0 +1,90 @@
+{
+	"compiler": {
+		"version": "0.8.16+commit.07a7930e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "assets",
+						"type": "address[]"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "claimAllRewards",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "rewardsList",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "claimedAmounts",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Aave",
+			"kind": "dev",
+			"methods": {
+				"claimAllRewards(address[],address)": {
+					"details": "Claims all rewards for a user to the desired address, on all the assets of the pool, accumulating the pending rewards",
+					"params": {
+						"assets": "The list of assets to check eligible distributions before claiming rewards",
+						"to": "The address that will be receiving the rewards"
+					},
+					"returns": {
+						"claimedAmounts": "List that contains the claimed amount per reward, following same order as \"rewardList\"",
+						"rewardsList": "List of addresses of the reward tokens"
+					}
+				}
+			},
+			"title": "IRewardsController",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "Defines the basic interface for a Rewards Controller.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"aave-v3/external/IRewardsController.sol": "IRewardsController"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"aave-v3/external/IRewardsController.sol": {
+			"keccak256": "0x99fdeffee28a1f84de7010959f96a772b9a6512c6446950bb714b521e8c536df",
+			"license": "AGPL-3.0",
+			"urls": [
+				"bzz-raw://9e6af211ae3b0ddce085b87abf49b7c22b2f650490cbf3f56b566ad9c086dadb",
+				"dweb:/ipfs/QmRDCG82uJKDXSAGCXeQLxj96MioKDCLTLVLurjNJQai4C"
+			]
+		}
+	},
+	"version": 1
+}

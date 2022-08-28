@@ -1,0 +1,915 @@
+{
+	"compiler": {
+		"version": "0.8.16+commit.07a7930e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "contract ERC20",
+						"name": "asset_",
+						"type": "address"
+					},
+					{
+						"internalType": "contract ERC20",
+						"name": "aToken_",
+						"type": "address"
+					},
+					{
+						"internalType": "contract IAaveMining",
+						"name": "aaveMining_",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "rewardRecipient_",
+						"type": "address"
+					},
+					{
+						"internalType": "contract ILendingPool",
+						"name": "lendingPool_",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Approval",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "ClaimRewards",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "caller",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "assets",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					}
+				],
+				"name": "Deposit",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "caller",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "assets",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					}
+				],
+				"name": "Withdraw",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "DOMAIN_SEPARATOR",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "aToken",
+				"outputs": [
+					{
+						"internalType": "contract ERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "aaveMining",
+				"outputs": [
+					{
+						"internalType": "contract IAaveMining",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "allowance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "approve",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "asset",
+				"outputs": [
+					{
+						"internalType": "contract ERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "claimRewards",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					}
+				],
+				"name": "convertToAssets",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "assets",
+						"type": "uint256"
+					}
+				],
+				"name": "convertToShares",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "decimals",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "assets",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					}
+				],
+				"name": "deposit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lendingPool",
+				"outputs": [
+					{
+						"internalType": "contract ILendingPool",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "maxDeposit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "maxMint",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "maxRedeem",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "maxWithdraw",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					}
+				],
+				"name": "mint",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "assets",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "nonces",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "deadline",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint8",
+						"name": "v",
+						"type": "uint8"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "r",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "s",
+						"type": "bytes32"
+					}
+				],
+				"name": "permit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "assets",
+						"type": "uint256"
+					}
+				],
+				"name": "previewDeposit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					}
+				],
+				"name": "previewMint",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					}
+				],
+				"name": "previewRedeem",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "assets",
+						"type": "uint256"
+					}
+				],
+				"name": "previewWithdraw",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "redeem",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "assets",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rewardRecipient",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalAssets",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transferFrom",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "assets",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "zefram.eth",
+			"details": "Important security note: due to Aave using a rebasing model for aTokens, this contract cannot independently keep track of the deposited funds, so it is possible for an attacker to directly transfer aTokens to this contract, increase the vault share price atomically, and then exploit an external lending market that uses this contract as collateral.",
+			"kind": "dev",
+			"methods": {},
+			"title": "AaveV2ERC4626",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"ClaimRewards(uint256)": {
+					"notice": "----------------------------------------------------------------------- Events -----------------------------------------------------------------------"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"aToken()": {
+					"notice": "The Aave aToken contract"
+				},
+				"aaveMining()": {
+					"notice": "The Aave liquidity mining contract"
+				},
+				"claimRewards()": {
+					"notice": "Claims liquidity mining rewards from Aave and sends it to rewardRecipient"
+				},
+				"constructor": {
+					"notice": "----------------------------------------------------------------------- Constructor -----------------------------------------------------------------------"
+				},
+				"lendingPool()": {
+					"notice": "The Aave LendingPool contract"
+				},
+				"rewardRecipient()": {
+					"notice": "The address that will receive the liquidity mining rewards (if any)"
+				},
+				"withdraw(uint256,address,address)": {
+					"notice": "----------------------------------------------------------------------- ERC4626 overrides -----------------------------------------------------------------------"
+				}
+			},
+			"notice": "ERC4626 wrapper for Aave V2",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"aave-v2/AaveV2ERC4626.sol": "AaveV2ERC4626"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"aave-v2/AaveV2ERC4626.sol": {
+			"keccak256": "0xc4890dad00b363461c5deb3afc264e174d137162adecb457314cc1bbdeacbdfd",
+			"license": "AGPL-3.0",
+			"urls": [
+				"bzz-raw://b0b5ac4d0ab27633506d0eeb86b44e3ce40c7f39ad8e048773b780ad2a4be03c",
+				"dweb:/ipfs/QmeqkoSfByGjEzFvhpH6rGPuSb8EwAdeB9Tz958XGHYKeV"
+			]
+		},
+		"aave-v2/external/IAaveMining.sol": {
+			"keccak256": "0x314f827a65aca5e8ee84b5f0f4a7668ffafe2c87f60d5473fbba8123869656d3",
+			"license": "AGPL-3.0",
+			"urls": [
+				"bzz-raw://d7fdf7b33693b1b6bb3b7047bc9f8872ae67f4e1cec7399924c68f0f57e2926c",
+				"dweb:/ipfs/QmYMy95BfEan5AE3GsRw4YqMFniNd4SyBfCFvf8Bw9i42D"
+			]
+		},
+		"aave-v2/external/ILendingPool.sol": {
+			"keccak256": "0x70191875ba744763a06cd3b84aa8671050058fa152f33518e421cf145f6f285e",
+			"license": "AGPL-3.0",
+			"urls": [
+				"bzz-raw://8c07ff0a386c7b3d5ca53b3874cc2fd9c6914b6f7ed5139a446f5be5d1587b6e",
+				"dweb:/ipfs/QmPvXuEyVKqZtGB2xDs9fq5LSjKN83HmyRjMNnMHwa8v89"
+			]
+		},
+		"solmate/mixins/ERC4626.sol": {
+			"keccak256": "0xa404f6f45bd53f24a90cc5ffe95e16b52e3f2dfd88f0d7a1edcb35f815919a7b",
+			"license": "AGPL-3.0-only",
+			"urls": [
+				"bzz-raw://9f01e32d713e05cc58c1563e9938a1c5e096b1da9f52c7ea8424f2317b94adc1",
+				"dweb:/ipfs/QmVt5SsbA3kezM5pyovupN7iZLy6QVqY5qQRZKLFqxKJUs"
+			]
+		},
+		"solmate/tokens/ERC20.sol": {
+			"keccak256": "0xcdfd8db76b2a3415620e4d18cc5545f3d50de792dbf2c3dd5adb40cbe6f94b10",
+			"license": "AGPL-3.0-only",
+			"urls": [
+				"bzz-raw://57b3ab70cde374af1cf2c9888636e8de6cf660f087b1c9abd805e9271e19fa35",
+				"dweb:/ipfs/QmNrLDBAHYFjpjSd12jerm1AdBkDqEYUUaXgnT854BUZ97"
+			]
+		},
+		"solmate/utils/FixedPointMathLib.sol": {
+			"keccak256": "0x9faabac0803e077fb8d8950f5e2fec1984d3e6cd6ad5fc144609b5c9de83d169",
+			"license": "AGPL-3.0-only",
+			"urls": [
+				"bzz-raw://57f4af9f9f91d8e60a4888a704a8a67957682a31cb5f0c42ebda01a8b3638dcd",
+				"dweb:/ipfs/QmXg8STZHnY8PZY25WdLZCiLhs1p8553N79GfZgqyqKRgP"
+			]
+		},
+		"solmate/utils/SafeTransferLib.sol": {
+			"keccak256": "0x333b56bef66ff71e3838910781df214acbeb6c2d6ace27a04ebb510f0e669300",
+			"license": "AGPL-3.0-only",
+			"urls": [
+				"bzz-raw://3d14e68954e3a7072fa3d31e6a862d97f944114abda40dcd8c5ba017bf79ff41",
+				"dweb:/ipfs/QmVfLok4Q5owoMyybxpensBvvjgUKT4kRVvM9BYuCifi5L"
+			]
+		}
+	},
+	"version": 1
+}
